@@ -10,7 +10,7 @@
 	int            next_link;      /*次オブジェクトリンク*/
 	unsigned short reserve2[4];    /*リザーブ*/
     }OBJHDR;
-int object_open(char *pc_argv,T_OBJ *pkobj,unsigned short *puh_1st_adr){
+int object_open(char *pc_argv,unsigned short *puh_1st_adr, T_OBJ *pkobj){
  
     FILE *fp;
     struct stat k_stat;
@@ -18,15 +18,15 @@ int object_open(char *pc_argv,T_OBJ *pkobj,unsigned short *puh_1st_adr){
     int obj_size;
     OBJHDR data1; 
 
-    if(*puh_1st_adr == NULL){
+    if(puh_1st_adr == NULL){
 	return NO_FILE;
 	}
 
-    fp = *fopne(pc_argv,'r');
+    fp = fopen(pc_argv,"r");
     if(fp == NULL){
         return NO_FILE;
     }
-    if(stat(pfilename,&k_stat) == -1){
+    if(stat(pc_argv,&k_stat) == -1){
 	return NO_FILE;
     }
     if(k_stat.st_size>VMEM_SIZE){

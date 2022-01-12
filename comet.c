@@ -26,10 +26,10 @@ int main(int argc,char *argv[]){
     }
 
     if(i_code == 0){
-	i_code = object_open(argv[puh_pos],&k_obj_tbl,puh_1st_adr);
+	i_code = object_open(argv[puh_pos],puh_1st_adr, &k_obj_tbl);
 	
         if (i_code == 0){
-	    i_code = auto_run(&k_prm_tbl,&k_obj_tbl,puh_1st_adr); 
+	    i_code = auto_run(k_prm_tbl,k_obj_tbl,puh_1st_adr); 
        	}
     }
 
